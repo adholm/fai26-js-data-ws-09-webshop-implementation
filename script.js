@@ -56,6 +56,23 @@ let activeDiscountCode = null;
 // ---------- Våra funktioner ----------
 
 // Här bygger vi.
+// getcarttotal räknar ut vad allt i varukorgen kostar
+// showCart visar varukorgen på sidan.
+// onSearchInput märker när kunden skriver i sökrutan
+
+// beskriv:
+// kunden väljer något i sorteringsmenyn: onSortChange
+// produkterna sorteras: sortProducts
+// de sorterade produkterna visas på sidan: getSelectedSort
+
+// plan:
+// 1. kunden väljer ngt i sortertingsmenyn
+onSortChange((sortValue) => {
+  // 2. sortera produkterna
+  const sortedProducts = sortProducts(products, sortValue);
+  // 3. visa sorterade produkter
+  showProducts(sortedProducts, favorites);
+});
 
 // ---------- Det som händer när sidan laddas ----------
 
