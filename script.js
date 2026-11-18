@@ -74,6 +74,64 @@ onSortChange((sortValue) => {
   showProducts(sortedProducts, favorites);
 });
 
+// spara nya varukorgen
+let count = 0;
+count = count + 1;
+
+// Funktion 1: Lägg i varukorgen
+onButtonClick("add-to-cart", (productId) => {
+  const product = findProduct(products, productId);
+  cart = addToCart(cart, product);
+
+  const total = getCartTotal(cart);
+  const shipping = getShipping(total);
+
+  showCart(cart);
+  showCartCount(getItemCount(cart));
+  showCartSummary(total, 0, shipping);
+});
+
+// Funktion 2: Ändra antal och ta bort i varukorgen
+// 1. när kunden trycker på något (onButtonClick)
+
+// 2. kund trycker på minus knappen (decreaseQuantity)
+onButtonClick("decrease", (productId) => {
+  cart = decreaseQuantity(cart, productId);
+  const total = getCartTotal(cart);
+  const shipping = getShipping(total);
+
+  showCart(cart);
+  showCartCount(getItemCount(cart));
+  showCartSummary(total, 0, shipping);
+});
+
+// 2. kund trycker på plus knappen (addToCart)
+onButtonClick("increase", (productId) => {
+  const product = findProduct(products, productId);
+  cart = addToCart(cart, product);
+
+  const total = getCartTotal(cart);
+  const shipping = getShipping(total);
+
+  showCart(cart);
+  showCartCount(getItemCount(cart));
+  showCartSummary(total, 0, shipping);
+});
+
+// 2. kund trycker på ta bort-knappen (removeFromCart)
+onButtonClick("remove", (productId) => {
+  cart = removeFromCart(cart, product);
+
+  const total = getCartTotal(cart);
+  const shipping = getShipping(total);
+
+  showCart(cart);
+  showCartCount(getItemCount(cart));
+  showCartSummary(total, 0, shipping);
+});
+
+// Funktion 3
+
 // ---------- Det som händer när sidan laddas ----------
 
 showProducts(products, favorites);
